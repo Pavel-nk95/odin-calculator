@@ -1,14 +1,59 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="styles/style.css">
-</head>
-<body>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Odin Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./svg/favicon.svg" sizes="any" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles/normalize.css" />
+    <link rel="stylesheet" href="./styles/app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <header class="header">
+          <h1 class="title">calculator</h1>
+        </header>
+        <main>
+          <div class="field">
+            <input class="input" type="text" />
+          </div>
+          <div class="inner">
+            <ul class="buttons">
+              <li><button class="btn btn--num" id="num-0">0</button></li>
+              <li><button class="btn btn--num" id="num-1">1</button></li>
+              <li><button class="btn btn--num" id="num-2">2</button></li>
+              <li><button class="btn btn--num" id="num-3">3</button></li>
+              <li><button class="btn btn--num" id="num-4">4</button></li>
+              <li><button class="btn btn--num" id="num-5">5</button></li>
+              <li><button class="btn btn--num" id="num-6">6</button></li>
+              <li><button class="btn btn--num" id="num-7">7</button></li>
+              <li><button class="btn btn--num" id="num-8">8</button></li>
+              <li><button class="btn btn--num" id="num-9">9</button></li>
+              <li><button class="btn btn--decimal" id="decimal">.</button></li>
+              <li><button class="btn btn--operator" id="multiply">*</button></li>
+              <li><button class="btn btn--operator" id="divide">/</button></li>
+              <li><button class="btn btn--operator" id="plus">+</button></li>
+              <li><button class="btn btn--operator" id="minus">-</button></li>
+              <li><button class="btn btn--operator" id="power">**</button></li>
+              <li><button class="btn btn--equal" id="equal">=</button></li>
+              <li><button class="btn btn--clear" id="clear"><</button></li>
+              <li><button class="btn btn--backspace" id="backspace"><<</button></li>
+            </ul>
+          </div>
+        </main>
+        <footer class="footer">
+          <a class="footer__link" href="http://"><b>Github</b> &#124;</a>
+          <p class="footer__text">Built by Pavel-nk. &#169; 2023</p>
+        </footer>
+      </div>
+    </div>
+  </body>
 </html>

@@ -1,0 +1,42 @@
+:root {
+  --text-color: #31393c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu", system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}/*# sourceMappingURL=app.css.map */
