@@ -5,6 +5,7 @@
   --bg-btn-color: #393e46;
   --bg-light-orange: #ff9a3c;
   --bg-red: #f95959;
+  --bg-white: #ffffff;
 }
 
 * {
@@ -51,6 +52,7 @@ button {
 .calculator {
   background-color: var(--bg-calc-color);
   padding: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 .inner {
@@ -151,6 +153,7 @@ button {
   cursor: pointer;
   transition: filter 0.3s;
   border: none;
+  padding: 0 2rem;
   outline: none;
   color: var(--text-color);
   background-color: var(--bg-btn-color);
@@ -176,6 +179,30 @@ button {
 .btn img {
   width: 42px;
   height: 42px;
+}
+
+.field {
+  font-size: 2.5rem;
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: var(--bg-white);
+  color: var(--bg-btn-color);
+  padding: 0 0.5rem;
+  cursor: text;
+  border: 2px solid var(--bg-btn-color);
+}
+.field__input {
+  display: flex;
+  justify-content: flex-end;
+  height: 3rem;
+  font-size: 2.5rem;
+}
+.field__history {
+  display: flex;
+  justify-content: flex-end;
+  height: 2rem;
+  font-size: 1.5rem;
 }
 
 .input {
