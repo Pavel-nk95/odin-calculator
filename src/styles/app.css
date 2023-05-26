@@ -1,5 +1,5 @@
 :root {
-  --text-color: #31393c;
+  --text-color: #f95959;
 }
 
 * {
@@ -11,6 +11,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Ubuntu", system-ui, sans-serif;
+  background-color: #e3e3e3;
 }
 
 h1,
@@ -37,6 +38,129 @@ button {
 
 .container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
+}
+
+.calculator {
+  background-color: #233142;
+  padding: 2rem;
+}
+
+.inner {
+  margin-top: 2rem;
+}
+
+.buttons {
+  display: grid;
+  gap: 0.1rem;
+  min-height: 25rem;
+  grid-template: "clear backspace power divide" "seven eigth nine multiply" "four five six minus" "one two three plus" "zero decimal equal plus";
+}
+
+#decimal {
+  grid-area: decimal;
+}
+
+#multiply {
+  grid-area: multiply;
+}
+
+#divide {
+  grid-area: divide;
+}
+
+#plus {
+  grid-area: plus;
+}
+
+#minus {
+  grid-area: minus;
+}
+
+#power {
+  grid-area: power;
+}
+
+#equal {
+  grid-area: equal;
+}
+
+#clear {
+  grid-area: clear;
+}
+
+#num-0 {
+  grid-area: zero;
+}
+
+#num-1 {
+  grid-area: one;
+}
+
+#num-2 {
+  grid-area: two;
+}
+
+#num-3 {
+  grid-area: three;
+}
+
+#num-4 {
+  grid-area: four;
+}
+
+#num-5 {
+  grid-area: five;
+}
+
+#num-6 {
+  grid-area: six;
+}
+
+#num-7 {
+  grid-area: seven;
+}
+
+#num-8 {
+  grid-area: eigth;
+}
+
+#num-9 {
+  grid-area: nine;
+}
+
+.title {
+  color: var(--text-color);
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: none;
+  outline: none;
+  color: var(--text-color);
+  background-color: #455d7a;
+}
+
+.input {
+  font-size: 2.5rem;
+  height: 5rem;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=app.css.map */
