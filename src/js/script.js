@@ -18,25 +18,25 @@ const controlNodes = {
 const state = {
   currentNum: '',
   operator: '',
-  result: '',
+  acc: '',
 };
 
-const { clearBtn, minusBtn, plusBtn, divideBtn, multiplyBtn } = controlNodes;
+const { clearBtn, minusBtn, plusBtn, divideBtn, multiplyBtn, equalBtn } = controlNodes;
 
 const sum = (firstOperand, secondOperand) => {
-  return firstOperand + secondOperand;
+  return Number(firstOperand) + Number(secondOperand);
 };
 
 const subtract = (firstOperand, secondOperand) => {
-  return firstOperand - secondOperand;
+  return Number(firstOperand) - Number(secondOperand);
 };
 
 const multiply = (firstOperand, secondOperand) => {
-  return firstOperand * secondOperand;
+  return Number(firstOperand) * Number(secondOperand);
 };
 
 const divide = (firstOperand, secondOperand) => {
-  return firstOperand / secondOperand;
+  return Number(firstOperand) / Number(secondOperand);
 };
 
 const power = () => {};
@@ -56,33 +56,66 @@ const operate = (firstOperand, secondOperand, operator) => {
   }
 };
 
+const runAction = (value) => {
+  const { currentNum, acc, operator } = state;
+  if (!acc && currentNum && !operator) {
+    state.operator = value;
+    state.acc = currentNum;
+    state.currentNum = '';
+    inputHistory.textContent = `${state.acc} ${state.operator} `;
+  }
+};
+
 clearBtn.addEventListener('click', () => {
   state.currentNum = '';
-  state.firstOperand = '';
-  state.secondOperand = '';
+  state.acc = '';
   state.operator = '';
   inputField.textContent = '0';
   inputHistory.textContent = '';
 });
 
-plusBtn.addEventListener('click', () => {});
+equalBtn.addEventListener('click', () => {
+  const { currentNum, acc, operator } = state;
+  if (currentNum && acc && operator) {
+    state.currentNum = operate(acc, currentNum, operator);
+    inputField.textContent = state.currentNum;
+    inputHistory.textContent += `${currentNum} =`;
+    state.acc = '';
+    state.operator = '';
+    console.log(state);
+  }
+});
 
 document.addEventListener('keydown', (event) => {
   if (event.code.startsWith('Digit')) {
     state.currentNum += +event.code.slice(-1);
     inputField.textContent = state.currentNum;
-    console.log(state.currentNum);
   }
 });
 
 buttonBoxNode.addEventListener('click', ({ target }) => {
   if (target.classList.contains('btn--num')) {
-    state.currentNum += +target.textContent;
+    state.currentNum += target.textContent;
     inputField.textContent = state.currentNum;
-    console.log(state.currentNum);
   } else {
     return;
   }
+});
+
+plusBtn.addEventListener('click', () => {
+  runAction('+');
+});
+
+minusBtn.addEventListener('click', () => {
+  runAction('-');
+});
+
+divideBtn.addEventListener('click', () => {
+  runAction('/');
+});
+
+multiplyBtn.addEventListener('click', () => {
+  runAction('*');
 });
 
 const startApp = () => {};
