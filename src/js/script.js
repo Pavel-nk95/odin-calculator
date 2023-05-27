@@ -13,15 +13,26 @@ const controlNodes = {
   powerBtn: document.getElementById('power'),
   equalBtn: document.getElementById('equal'),
   clearBtn: document.getElementById('clear'),
+  backspaceBtn: document.getElementById('backspace'),
 };
 
 const state = {
-  currentNum: '',
+  firstOperand: '',
   operator: '',
-  acc: '',
+  secondOperand: '',
 };
 
-const { clearBtn, minusBtn, plusBtn, divideBtn, multiplyBtn, equalBtn } = controlNodes;
+const {
+  clearBtn,
+  minusBtn,
+  plusBtn,
+  divideBtn,
+  multiplyBtn,
+  equalBtn,
+  backspaceBtn,
+  powerBtn,
+  decimalBtn,
+} = controlNodes;
 
 const sum = (firstOperand, secondOperand) => {
   return Number(firstOperand) + Number(secondOperand);
@@ -39,8 +50,6 @@ const divide = (firstOperand, secondOperand) => {
   return Number(firstOperand) / Number(secondOperand);
 };
 
-const power = () => {};
-
 const operate = (firstOperand, secondOperand, operator) => {
   switch (operator) {
     case '+':
@@ -57,30 +66,57 @@ const operate = (firstOperand, secondOperand, operator) => {
 };
 
 const runAction = (value) => {
-  const { currentNum, acc, operator } = state;
-  if (!acc && currentNum && !operator) {
+  const { firstOperand, secondOperand, operator } = state;
+  if (!secondOperand && firstOperand && !operator) {
     state.operator = value;
-    state.acc = currentNum;
-    state.currentNum = '';
-    inputHistory.textContent = `${state.acc} ${state.operator} `;
+    state.secondOperand = firstOperand;
+    state.firstOperand = '';
+    inputHistory.textContent = `${state.secondOperand} ${state.operator} `;
+  }
+  if (secondOperand && firstOperand && operator) {
+    state.operator = value;
+    state.secondOperand = operate(secondOperand, firstOperand, operator);
+    inputHistory.textContent = `${state.secondOperand} ${state.operator} `;
+    state.firstOperand = '';
+    inputField.textContent = '';
   }
 };
 
+backspaceBtn.addEventListener('click', () => {
+  state.firstOperand = '';
+  inputField.textContent = '0';
+});
+
+decimalBtn.addEventListener('click', () => {
+  if (state.firstOperand.includes('.')) {
+    return;
+  }
+  state.firstOperand += '.';
+  inputField.textContent += '.';
+});
+
+powerBtn.addEventListener('click', () => {
+  if (!state.secondOperand && !state.operator) {
+    state.firstOperand = state.firstOperand ** 2;
+    inputField.textContent = state.firstOperand;
+  }
+});
+
 clearBtn.addEventListener('click', () => {
-  state.currentNum = '';
-  state.acc = '';
+  state.firstOperand = '';
+  state.secondOperand = '';
   state.operator = '';
   inputField.textContent = '0';
   inputHistory.textContent = '';
 });
 
 equalBtn.addEventListener('click', () => {
-  const { currentNum, acc, operator } = state;
-  if (currentNum && acc && operator) {
-    state.currentNum = operate(acc, currentNum, operator);
-    inputField.textContent = state.currentNum;
-    inputHistory.textContent += `${currentNum} =`;
-    state.acc = '';
+  const { firstOperand, secondOperand, operator } = state;
+  if (firstOperand && secondOperand && operator) {
+    state.firstOperand = operate(secondOperand, firstOperand, operator);
+    inputField.textContent = state.firstOperand;
+    inputHistory.textContent += `${firstOperand}`;
+    state.secondOperand = '';
     state.operator = '';
     console.log(state);
   }
@@ -88,15 +124,15 @@ equalBtn.addEventListener('click', () => {
 
 document.addEventListener('keydown', (event) => {
   if (event.code.startsWith('Digit')) {
-    state.currentNum += +event.code.slice(-1);
-    inputField.textContent = state.currentNum;
+    state.firstOperand += +event.code.slice(-1);
+    inputField.textContent = state.firstOperand;
   }
 });
 
 buttonBoxNode.addEventListener('click', ({ target }) => {
   if (target.classList.contains('btn--num')) {
-    state.currentNum += target.textContent;
-    inputField.textContent = state.currentNum;
+    state.firstOperand += target.textContent;
+    inputField.textContent = state.firstOperand;
   } else {
     return;
   }
